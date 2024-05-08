@@ -14,18 +14,24 @@ jobs:
               run: sudo apt install git cmake ninja-build libgl1-mesa-dev libsdl2-dev
             - name : Install Corrade
               run: |
-                  git clone https://github.com/mosra/corrade.git --depth 1
-                  mkdir corrade/build && cd corrade/build
-                  cmake -DCMAKE_GENERATOR=Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install ..
-                  cmake --build .
-                  cmake --install .
+                git clone https://github.com/mosra/corrade.git --depth 1
+                mkdir corrade/build && cd corrade/build
+                cmake -DCMAKE_GENERATOR=Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install ..
+                cmake --build .
+                cmake --install .
             - name : Install Magnum
               run: |
-                  git clone https://github.com/mosra/magnum.git --depth 1
-                  mkdir magnum/build && cd magnum/build
-                  cmake -DCMAKE_GENERATOR=Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install ..
-                  cmake --build .
-                  cmake --install .
+                git clone https://github.com/mosra/magnum.git --depth 1
+                mkdir magnum/build && cd magnum/build
+                cmake -DCMAKE_GENERATOR=Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install ..
+                cmake --build .
+                cmake --install .
+            - name : Build RTxRT
+              run: |
+                git clone https://github.com/douze/rtxrt.git --depth 1
+                mkdir rtxrt/build && cd rtxrt/build
+                cmake -DCMAKE_GENERATOR=Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install ..
+                cmake --build .
 
 
 
